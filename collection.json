@@ -1,0 +1,46 @@
+{
+	"info": {
+		"name": "Inventory Service Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register Device",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{ "key": "inventory_name", "value": "Test Laptop", "type": "text" },
+						{ "key": "description", "value": "Work laptop", "type": "text" }
+					]
+				},
+				"url": { "raw": "http://localhost:3000/register", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["register"] }
+			}
+		},
+		{
+			"name": "Get All Inventory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": { "raw": "http://localhost:3000/inventory", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["inventory"] }
+			}
+		},
+		{
+			"name": "Search Device",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{ "key": "id", "value": "INSERT_ID_HERE", "type": "text" },
+						{ "key": "has_photo", "value": "on", "type": "text" }
+					]
+				},
+				"url": { "raw": "http://localhost:3000/search", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["search"] }
+			}
+		}
+	]
+}

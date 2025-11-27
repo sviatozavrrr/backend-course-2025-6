@@ -1,0 +1,129 @@
+openapi: 3.0.0
+info:
+  title: Inventory Service API
+  description: Лабораторна робота №6
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /register:
+    post:
+      summary: Реєстрація нового пристрою
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                inventory_name:
+                  type: string
+                description:
+                  type: string
+                photo:
+                  type: string
+                  format: binary
+              required:
+                - inventory_name
+      responses:
+        '201':
+          description: Created
+  /inventory:
+    get:
+      summary: Отримати список всіх речей
+      responses:
+        '200':
+          description: OK
+  /inventory/{id}:
+    get:
+      summary: Отримати річ за ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: Not Found
+    put:
+      summary: Оновити ім'я або опис
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '200':
+          description: Updated
+    delete:
+      summary: Видалити річ
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted
+  /inventory/{id}/photo:
+    get:
+      summary: Отримати фото речі
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Image file returned
+    put:
+      summary: Оновити фото речі
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                photo:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Photo updated
+  /search:
+    post:
+      summary: Пошук пристрою (форма)
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                has_photo:
+                  type: string
+      responses:
+        '200':
+          description: Found
