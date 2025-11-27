@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js -- -h localhost -p 3000 -c ./cache"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sviatozavrrr/backend-course-2025-6.git"
@@ -19,6 +20,8 @@
   "homepage": "https://github.com/sviatozavrrr/backend-course-2025-6#readme",
   "dependencies": {
     "commander": "^14.0.2",
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
     "superagent": "^10.2.3"
   },
   "devDependencies": {
