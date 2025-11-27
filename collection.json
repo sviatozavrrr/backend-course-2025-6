@@ -1,11 +1,13 @@
 {
 	"info": {
-		"name": "Inventory Service Tests",
+		"_postman_id": "b53f6c8a-1234-4567-8900-123456789abc",
+		"name": "Inventory Service Full Lab 6",
+		"description": "Повна колекція для лабораторної роботи №6",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Register Device",
+			"name": "1. Register Device (POST)",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -13,14 +15,15 @@
 					"mode": "formdata",
 					"formdata": [
 						{ "key": "inventory_name", "value": "Test Laptop", "type": "text" },
-						{ "key": "description", "value": "Work laptop", "type": "text" }
+						{ "key": "description", "value": "My work laptop", "type": "text" },
+						{ "key": "photo", "type": "file", "src": [] }
 					]
 				},
 				"url": { "raw": "http://localhost:3000/register", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["register"] }
 			}
 		},
 		{
-			"name": "Get All Inventory",
+			"name": "2. Get All Inventory (GET)",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -28,18 +31,114 @@
 			}
 		},
 		{
-			"name": "Search Device",
+			"name": "3. Get Item by ID (GET)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/inventory/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["inventory", ":id"],
+					"variable": [
+						{ "key": "id", "value": "ВСТАВ_ID_СЮДИ", "description": "ID пристрою" }
+					]
+				}
+			}
+		},
+		{
+			"name": "4. Update Item Info (PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Updated Laptop Name\",\n    \"description\": \"Updated description\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": {
+					"raw": "http://localhost:3000/inventory/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["inventory", ":id"],
+					"variable": [
+						{ "key": "id", "value": "ВСТАВ_ID_СЮДИ" }
+					]
+				}
+			}
+		},
+		{
+			"name": "5. Get Photo (GET)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/inventory/:id/photo",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["inventory", ":id", "photo"],
+					"variable": [
+						{ "key": "id", "value": "ВСТАВ_ID_СЮДИ" }
+					]
+				}
+			}
+		},
+		{
+			"name": "6. Update Photo (PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{ "key": "photo", "type": "file", "src": [] }
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/inventory/:id/photo",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["inventory", ":id", "photo"],
+					"variable": [
+						{ "key": "id", "value": "ВСТАВ_ID_СЮДИ" }
+					]
+				}
+			}
+		},
+		{
+			"name": "7. Search Device (POST)",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "urlencoded",
 					"urlencoded": [
-						{ "key": "id", "value": "INSERT_ID_HERE", "type": "text" },
+						{ "key": "id", "value": "ВСТАВ_ID_СЮДИ", "type": "text" },
 						{ "key": "has_photo", "value": "on", "type": "text" }
 					]
 				},
 				"url": { "raw": "http://localhost:3000/search", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["search"] }
+			}
+		},
+		{
+			"name": "8. Delete Device (DELETE)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/inventory/:id",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["inventory", ":id"],
+					"variable": [
+						{ "key": "id", "value": "ВСТАВ_ID_СЮДИ" }
+					]
+				}
 			}
 		}
 	]
